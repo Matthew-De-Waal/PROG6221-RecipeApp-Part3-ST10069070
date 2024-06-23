@@ -1,0 +1,144 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecipeAppWPF"
+        xmlns:RecipeApp="clr-namespace:RecipeApp;assembly=RecipeApp" x:Class="RecipeAppWPF.MainWindow"
+        mc:Ignorable="d"
+        Title="RecipeApp" Height="662" Width="1163" Icon="/logo.png" SizeChanged="Window_SizeChanged" Loaded="Window_Loaded" WindowState="Maximized">
+    <Grid x:Name="gridMain" Background="#FF464646">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Menu FontSize="14" Foreground="White" Height="25" VerticalAlignment="Top" Background="#FF282828">
+            <MenuItem Header="Recipe" FontSize="14" RenderTransformOrigin="0.965,1.454" OpacityMask="#FFB73434" Background="{x:Null}">
+                <MenuItem Header="New Recipe" Click="NewRecipe_Click" Foreground="Black">
+                    <MenuItem.Icon>
+                        <Image Source="/new-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Scale Recipe" Foreground="Black" Click="ScaleRecipe_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/scale-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Clear Recipe" Foreground="Black" Click="ClearRecipe_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/delete-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Delete Recipe" Foreground="Black" Click="DeleteRecipe_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/delete-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Export Recipe" Foreground="Black" Click="ExportRecipe_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/export-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Add To Menu" Foreground="Black" Click="AddToMenu_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/plus-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Remove From Menu" Foreground="Black" Click="RemoveFromMenu_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/minus-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Exit Application" Foreground="Black" Click="ExitApplication_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/exit-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Add Ingredient"  Click="AddIngredient_Click" Foreground="Black">
+                    <MenuItem.Icon>
+                        <Image Source="/plus-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Add Instruction" Click="AddInstruction_Click" Foreground="Black">
+                    <MenuItem.Icon>
+                        <Image Source="/plus-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Remove Ingredient" Foreground="Black" Click="RemoveIngredient_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/minus-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Remove Instruction" Foreground="Black" Click="RemoveInstruction_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/minus-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Clear Ingredients"  Click="ClearIngredients_Click" Foreground="Black">
+                    <MenuItem.Icon>
+                        <Image Source="/delete-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Clear Instructions"  Click="ClearInstructions_Click" Foreground="Black">
+                    <MenuItem.Icon>
+                        <Image Source="/delete-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Update Ingredient" Foreground="Black" Click="UpdateIngredient_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/update-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Update Instruction"  Foreground="Black" Click="UpdateInstruction_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/update-icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About RecipeApp" Foreground="Black" Click="AboutRecipeApp_Click" />
+            </MenuItem>
+        </Menu>
+
+        <Grid Margin="12,41,15,0" Height="316" VerticalAlignment="Top">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF371E1E"/>
+                    <GradientStop Color="#FFA25C5C" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid x:Name="gridRecipeMenu" RenderTransformOrigin="0.427,0.398" Margin="0,5,0,5" HorizontalAlignment="Left" Width="1123">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Image HorizontalAlignment="Left" Margin="4,45,0,0" Width="180" Source="/hat1.png" Height="168" VerticalAlignment="Top"/>
+                <Label Content="Recipe Menu" HorizontalAlignment="Left" Margin="16,218,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="22" RenderTransformOrigin="0.678,0.561"/>
+                <Grid Margin="413,0,20,0" Background="#FFFF791B" Height="286" VerticalAlignment="Center">
+                    <Grid Margin="6,6,5,6" Background="#FF3C3C3C">
+                        <Canvas x:Name="pieView" Background="#FF323232" HorizontalAlignment="Left" Width="332" Height="273"></Canvas>
+                        <Label Content="Food Group Percentages:" HorizontalAlignment="Left" Margin="337,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="White"/>
+                        <Label x:Name="lblVegetables" Content="Vegetables: 0%" HorizontalAlignment="Left" Margin="354,51,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="Red" Background="Black"/>
+                        <Label x:Name="lblFruits" Content="Fruits: 0%" HorizontalAlignment="Left" Margin="354,80,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="Lime" Background="Black"/>
+                        <Label x:Name="lblGrains" Content="Grains: 0%" HorizontalAlignment="Left" Margin="354,109,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="DarkCyan" Background="Black"/>
+                        <Label x:Name="lblProtein" Content="Protein: 0%" HorizontalAlignment="Left" Margin="354,139,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="LightBlue" Background="Black"/>
+                        <Label x:Name="lblDairy" Content="Dairy: 0%" HorizontalAlignment="Left" Margin="354,169,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="Orange" Background="Black"/>
+                        <Label x:Name="lblOilSolidFats" Content="Oil and Solid Fats: 0%" HorizontalAlignment="Left" Margin="512,51,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="#FF74DAA0" Background="Black"/>
+                        <Label x:Name="lblAddedSugars" Content="Added Sugars: 0%" HorizontalAlignment="Left" Margin="512,80,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="Yellow" Background="Black"/>
+                        <Label x:Name="lblBeverages" Content="Beverages: 0%" HorizontalAlignment="Left" Margin="512,109,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Foreground="Magenta" Background="Black"/>
+                    </Grid>
+                </Grid>
+                <ListBox x:Name="lbRecipeMenu" Margin="187,0,0,0" HorizontalAlignment="Left" Width="221" Height="286" VerticalAlignment="Center" Background="#FF3C3C3C" Foreground="White" SelectionChanged="lbRecipeMenu_SelectionChanged"/>
+
+            </Grid>
+        </Grid>
+
+        <Grid Margin="12,362,15,12" Background="#FF780000">
+            <TreeView x:Name="tvRecipes"  Background="#FF737373" HorizontalAlignment="Left" Width="275" Foreground="White" FontSize="16" Margin="0,17,0,0" SelectedItemChanged="tvRecipes_SelectedItemChanged" />
+            <TextBox x:Name="txtRecipeData"  TextWrapping="Wrap" AcceptsReturn="True" Background="#FF2D2D2D" Foreground="White" FontSize="16" Margin="291,17,0,0" IsReadOnly="True" FontFamily="Calibri" VerticalScrollBarVisibility="Auto"/>
+        </Grid>
+    </Grid>
+</Window>
